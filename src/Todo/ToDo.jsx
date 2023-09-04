@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ToDo() {
     const [atividade, setAtividade] = useState("");
-    const [lista, setLista] = useState({});
+    const [lista, setLista] = useState([]);
 
     const salvar = (e) =>{
        e.preventDefault();
