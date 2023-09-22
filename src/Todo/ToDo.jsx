@@ -18,14 +18,14 @@ export default function ToDo() {
             <h1>Lista de Atividades</h1>
 
             <form onSubmit={salvar}>
-                <input onChange={(e) => setAtividade(e.target.value)} type="text"></input>
+                <input value={atividade} onChange={(e) => setAtividade(e.target.value)} type="text"></input>
                 <button>ADD</button>
 
             </form>
 
             {lista.map((ativ) => 
              <div>
-            <p>ativ.atividade</p>
+            <p>{ativ.atividade}</p>
             </div>
             )}
         </div>
