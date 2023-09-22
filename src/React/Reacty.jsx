@@ -39,8 +39,11 @@ export default function ReaCte() {
 
             </form>
 
+            <div class="container text-center">
+  <div class="row">
             {lista.map((ativ,index) => 
-             <div key={index}>
+             <div class="col" key={index}>
+
                 <div class="card" style="width: 18rem;">
             <img src={ativ.imagem} class="card-img-top" alt="..."></img>
             <div class="card-body">
@@ -52,6 +55,8 @@ export default function ReaCte() {
             
             </div>
             )}
+        </div>
+        </div>
         </div>
     );
 }
