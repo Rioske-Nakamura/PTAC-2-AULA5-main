@@ -19,7 +19,7 @@ export default function ToDo() {
 
             <form onSubmit={salvar}>
                 <input value={atividade} onChange={(e) => setAtividade(e.target.value)} type="text"></input>
-                <button>ADD</button>
+                <button type="submit">ADD</button>
 
             </form>
 
