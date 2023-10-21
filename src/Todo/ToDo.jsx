@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, json } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ToDo() {
     alStorage = localStorage.getItem("lista");
@@ -15,6 +15,12 @@ export default function ToDo() {
        }])
     };
     
+    const apagarC = (index) =>{
+        const novalista = [...lista];
+        novalista.splice(index,1);
+        setLista(novalista);
+    };
+
     return(
         <div>
             <Link to="/">home</Link>
@@ -29,6 +35,7 @@ export default function ToDo() {
             {lista.map((ativ) => 
              <div>
             <p>{ativ.atividade}</p>
+            <button onClick={(e) => apagarC(index)}>apagar</button>
             </div>
             )}
         </div>

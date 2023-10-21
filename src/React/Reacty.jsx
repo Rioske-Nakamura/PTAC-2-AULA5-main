@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ReaCte() {
@@ -8,18 +8,18 @@ export default function ReaCte() {
     const [lista, setLista] = useState([]);
 
     const salvar = (e) =>{
-       e.preventDefault();
-       setLista([...lista,{
-        conteudo: conteudo,
-        imagem: imagem,
-        nome: nome
-       }])
+        e.preventDefault();
+        setLista([...lista,{
+            conteudo: conteudo,
+            imagem: imagem,
+            nome: nome
+        }])
     };
 
-    const apagarC = (e) =>{
-       novalista=[...lista]
-       novalista.splice(index,1);
-       setLista(novalista)
+    const apagarC = (index) =>{
+        const novalista = [...lista];
+        novalista.splice(index,1);
+        setLista(novalista);
     };
     
     return(
@@ -31,32 +31,29 @@ export default function ReaCte() {
                 <h2>Nome</h2>
                 <input value={nome} onChange={(e) => setNome(e.target.value)} type="text"></input>
                 <h2>Imagem</h2>
-                    <input value={imagem} onChange={(e) => setImagem(e.target.value)} type="text"></input>
+                <input value={imagem} onChange={(e) => setImagem(e.target.value)} type="text"></input>
                 <h2>Conteudo</h2>
                 <input value={conteudo} onChange={(e) => setConteudo(e.target.value)} type="text"></input>
 
-                <button type="submit" >ADD</button>
-
+                <button type="submit">ADD</button>
             </form>
 
-            <div class="container text-center">
-  <div class="row">
-            {lista.map((ativ,index) => 
-             <div class="col" key={index}>
-
-                <div class="card" style="width: 18rem;">
-            <img src={ativ.imagem} class="card-img-top" alt="..."></img>
-            <div class="card-body">
-             <h5 class="card-title">{ativ.nome}</h5>
-             <p class="card-text">{ativ.conteudo}</p>
-    <button onClick={(e) => apagarC(index)} class="btn btn-primary">apagar</button>
-  </div>
-</div>
-            
+            <div className="container text-center">
+                <div className="row">
+                    {lista.map((ativ, index) => (
+                        <div className="col" key={index}>
+                            <div className="card" style={{ width: "18rem" }}>
+                                <img src={ativ.imagem} className="card-img-top" alt="..."></img>
+                                <div className="card-body">
+                                    <h5 className="card-title">{ativ.nome}</h5>
+                                    <p className="card-text">{ativ.conteudo}</p>
+                                    <button onClick={() => apagarC(index)} className="btn btn-primary">apagar</button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            )}
-        </div>
-        </div>
         </div>
     );
 }
