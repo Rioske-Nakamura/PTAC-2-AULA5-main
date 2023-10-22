@@ -5,8 +5,9 @@ export default function Home() {
     return (
         <div>
             <h1>Home</h1>
-            <Link to="/todo">todo</Link>
-            <Link to="/Trabalho">todo</Link>
+            <Link to="/todo">Sabado Letivo</Link>
+            <br></br>
+            <Link to="/Trabalho">Trabalho</Link>
         </div>
 
     );

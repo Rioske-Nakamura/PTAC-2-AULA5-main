@@ -25,6 +25,8 @@ export default function ReaCte() {
     return(
         <div>
             <Link to="/">home</Link>
+            <br></br>
+            <Link to="/todo">atividade</Link>
             <h1>Lista de Atividades</h1>
 
             <form onSubmit={salvar}>

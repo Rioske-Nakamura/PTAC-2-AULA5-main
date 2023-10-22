@@ -1,43 +1,48 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function ToDo() {
-    alStorage = localStorage.getItem("lista");
+    const alStorage = localStorage.getItem("lista");
     const [atividade, setAtividade] = useState("");
-    const [lista, setLista] = useState([]);
+    const [lista, setLista] = useState(alStorage ? JSON.parse(alStorage) : []);
+    const [count, setCount] = useState(0)
 
-    useEffect(() => { localStorage.setItem("lista",  json.stringify(lista))}, [lista]);
+    useEffect(() => {
+        localStorage.setItem("lista", JSON.stringify(lista));
+    }, [lista]);
 
-    const salvar = (e) =>{
-       e.preventDefault();
-       setLista([...lista,{
-        atividade: atividade
-       }])
+    useEffect(()=> document.title= "voce clicou  ${count} vezes")
+
+    const salvar = (e) => {
+        e.preventDefault();
+        setLista([...lista, {
+            atividade: atividade
+        }]);
+        setAtividade(""); 
     };
-    
-    const apagarC = (index) =>{
+
+    const apagarC = (index) => {
         const novalista = [...lista];
-        novalista.splice(index,1);
+        novalista.splice(index, 1);
         setLista(novalista);
     };
 
-    return(
+    return (
         <div>
             <Link to="/">home</Link>
             <h1>Lista de Atividades</h1>
 
             <form onSubmit={salvar}>
-                <input value={atividade} onChange={(e) => setAtividade(e.target.value)} type="text"></input>
+                <input value={atividade} onChange={(e) => setAtividade(e.target.value)} type="text" />
                 <button type="submit">ADD</button>
-
             </form>
 
-            {lista.map((ativ) => 
-             <div>
-            <p>{ativ.atividade}</p>
-            <button onClick={(e) => apagarC(index)}>apagar</button>
-            </div>
-            )}
+            {lista.map((ativ, index) => (
+                <div key={index}>
+                    <p>{ativ.atividade}</p>
+                    <button onClick={() => apagarC(index)}>apagar</button>
+                </div>
+            ))}
         </div>
     );
 }
