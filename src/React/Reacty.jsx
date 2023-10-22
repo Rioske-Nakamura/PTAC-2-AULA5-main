@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function ReaCte() {
+    const alStorage = localStorage.getItem("lista");
+    const [count, setCount] = useState(0)
     const [conteudo, setConteudo] = useState("");
     const [imagem, setImagem] = useState("");
     const [nome, setNome] = useState("");
-    const [lista, setLista] = useState([]);
+    const [lista, setLista] = useState(alStorage ? JSON.parse(alStorage) : []);
+    const [Id, setId] = useState(0)
+
+    useEffect(() => {
+        localStorage.setItem("lista", JSON.stringify(lista));
+        document.title= `voce clicou  ${count} vezes`;
+    }, [lista, count])
+
+   
 
     const salvar = (e) =>{
         e.preventDefault();
         setLista([...lista,{
             conteudo: conteudo,
             imagem: imagem,
-            nome: nome
-        }])
+            nome: nome,
+            Id: Id
+        }]);
+        setConteudo("");
+        setNome("");
+        setImagem("");
+        setId(Id+1)
+        setCount(count+1)
     };
 
     const apagarC = (index) =>{
@@ -49,7 +65,7 @@ export default function ReaCte() {
                                 <div className="card-body">
                                     <h5 className="card-title">{ativ.nome}</h5>
                                     <p className="card-text">{ativ.conteudo}</p>
-                                    <button onClick={() => apagarC(index)} className="btn btn-primary">apagar</button>
+                                    <button id={ativ.Id} onClick={() => apagarC(index)} className="btn btn-primary">apagar</button>
                                 </div>
                             </div>
                         </div>

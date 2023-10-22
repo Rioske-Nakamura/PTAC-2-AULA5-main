@@ -9,10 +9,10 @@ export default function ToDo() {
 
     useEffect(() => {
         localStorage.setItem("lista", JSON.stringify(lista));
-    }, [lista]);
+    }, [lista, count],
+    document.title= "voce clicou  ${count} vezes");
 
-    useEffect(()=> document.title= "voce clicou  ${count} vezes")
-
+  
     const salvar = (e) => {
         e.preventDefault();
         setLista([...lista, {
