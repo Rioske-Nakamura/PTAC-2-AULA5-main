@@ -4,21 +4,26 @@ import { Link } from "react-router-dom";
 export default function ToDo() {
     const alStorage = localStorage.getItem("lista");
     const [atividade, setAtividade] = useState("");
+    const [id, setId] = useState(0);
     const [lista, setLista] = useState(alStorage ? JSON.parse(alStorage) : []);
     const [count, setCount] = useState(0)
 
     useEffect(() => {
         localStorage.setItem("lista", JSON.stringify(lista));
-    }, [lista, count],
-    document.title= "voce clicou  ${count} vezes");
+        document.title= `voce clicou  ${count} vezes`;
+    }, [lista, count]);
+    
 
   
     const salvar = (e) => {
         e.preventDefault();
         setLista([...lista, {
-            atividade: atividade
+            atividade: atividade,
+            id: id,
         }]);
         setAtividade(""); 
+        setCount(count +1);
+        setId(id+1)
     };
 
     const apagarC = (index) => {
@@ -39,7 +44,7 @@ export default function ToDo() {
 
             {lista.map((ativ, index) => (
                 <div key={index}>
-                    <p>{ativ.atividade}</p>
+                    <p>{ativ.id}- {ativ.atividade}</p>
                     <button onClick={() => apagarC(index)}>apagar</button>
                 </div>
             ))}

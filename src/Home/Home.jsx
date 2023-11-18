@@ -8,6 +8,9 @@ export default function Home() {
             <Link to="/todo">Sabado Letivo</Link>
             <br></br>
             <Link to="/Trabalho">Trabalho</Link>
+            <br></br>
+            
+            <Link to="/detalhe:1">Atividade 2</Link>
         </div>
 
     );

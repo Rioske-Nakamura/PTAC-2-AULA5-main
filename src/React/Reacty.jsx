@@ -7,19 +7,19 @@ export default function ReaCte() {
     const [conteudo, setConteudo] = useState("");
     const [imagem, setImagem] = useState("");
     const [nome, setNome] = useState("");
-    const [lista, setLista] = useState(alStorage ? JSON.parse(alStorage) : []);
+    const [produtos, setProdutos] = useState(alStorage ? JSON.parse(alStorage) : []);
     const [Id, setId] = useState(0)
 
     useEffect(() => {
-        localStorage.setItem("lista", JSON.stringify(lista));
+        localStorage.setItem("lista", JSON.stringify(produtos));
         document.title= `voce clicou  ${count} vezes`;
-    }, [lista, count])
+    }, [produtos, count])
 
    
 
     const salvar = (e) =>{
         e.preventDefault();
-        setLista([...lista,{
+        setProdutos([...produtos,{
             conteudo: conteudo,
             imagem: imagem,
             nome: nome,
@@ -33,9 +33,9 @@ export default function ReaCte() {
     };
 
     const apagarC = (index) =>{
-        const novalista = [...lista];
+        const novalista = [...produtos];
         novalista.splice(index,1);
-        setLista(novalista);
+        setProdutos(novalista);
     };
     
     return(
@@ -58,7 +58,7 @@ export default function ReaCte() {
 
             <div className="container text-center">
                 <div className="row">
-                    {lista.map((ativ, index) => (
+                    {produtos.map((ativ, index) => (
                         <div className="col" key={index}>
                             <div className="card" style={{ width: "18rem" }}>
                                 <img src={ativ.imagem} className="card-img-top" alt="..."></img>
