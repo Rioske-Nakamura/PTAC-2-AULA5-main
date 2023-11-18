@@ -10,7 +10,7 @@ export default function Home() {
             <Link to="/Trabalho">Trabalho</Link>
             <br></br>
             
-            <Link to="/detalhe:1">Atividade 2</Link>
+            <Link to="/detalhe/1">Atividade 2</Link>
         </div>
 
     );
